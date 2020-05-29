@@ -1,0 +1,54 @@
+words = ["hangman", "chairs", "backpack", "bodywash", "clothing",
+                 "computer", "python", "program", "glasses", "sweatshirt",
+                 "sweatpants", "mattress", "friends", "clocks", "biology",
+                 "algebra", "suitcase", "knives", "ninjas", "shampoo"
+        ]
+
+
+import random
+import re
+word = random.choice(words)
+print(word)
+
+space = ["_"]*len(word)
+
+
+for i in range(4):
+  letter = input("enter a letter: ")
+  if len(letter) != 1:
+    print("that's not a letter")
+  elif len(letter) == 1:
+    count = word.count(letter)
+    if letter in word:
+      list1 = [x.start() for x in re.finditer(letter, word)] 
+      for i in range(count):
+        space[list1[i]] = letter
+      print(space)
+    else:
+      print("no such letter")
+
+    if_guess = input("want to guess?: ")  
+    if if_guess == "yes":
+      guess = input("any guess?: ")
+      if guess == word:
+        print("congrats!")
+        break 
+      else:
+        print("not true")
+    
+for i in range(1):
+  letter = input("enter a letter: ")
+  if len(letter) != 1:
+    print("that's not a letter")
+  elif len(letter) == 1:
+    count = word.count(letter)
+    if letter in word:
+      list1 = [x.start() for x in re.finditer(letter, word)] 
+      for i in range(count):
+        space[list1[i]] = letter
+      print(space)
+    last_guess = input("any last guess?: ")
+    if last_guess == word:
+      print("congrats!")
+    else: 
+      print("not true")    
